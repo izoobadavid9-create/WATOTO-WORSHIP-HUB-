@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Monthly Ministry Report</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#F2F1EC}
+.serif{font-family:'Source Serif 4',Georgia,serif}
+a{color:#0A7D2C;text-decoration:none}
+label{display:block;font-size:12.5px;font-weight:600;color:#4A4A42;margin-bottom:6px;}
+input[type="text"],input[type="number"],textarea,select{
+  width:100%;box-sizing:border-box;font-family:inherit;font-size:13.5px;color:#1F1E18;
+  background:#FFFFFF;border:1px solid #DAD6C9;border-radius:9px;padding:10px 12px;
+}
+textarea{resize:vertical;min-height:64px;line-height:1.5;}
+.field{margin-bottom:16px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;}
+.section{background:#FFFFFF;border:1px solid #E4E1D6;border-radius:16px;padding:28px 32px;margin-bottom:22px;}
+.eyebrow{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#0A7D2C;font-weight:700;margin-bottom:6px;}
+.sectitle{font-size:19px;font-weight:600;color:#1F1E18;margin-bottom:20px;}
+
+/* responsive for phones/tablets */
+.page{max-width:100%;margin:0 auto;}
+@media (max-width:900px){
+ .row2,.row3,.row4{grid-template-columns:1fr !important;}
+ .stack{flex-direction:column !important;}
+ .pad{padding-left:20px !important;padding-right:20px !important;}
+ .card-link{width:100% !important;}
+}
+</style>
+</head>
+<body>
+<div class="page" style="max-width:1240px;margin:0 auto;box-sizing:border-box;background:#F2F1EC;display:flex;flex-direction:column;">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:26px 48px;border-bottom:1px solid #E4E1D6;background:#FFFFFF;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <a href="Main.html" style="width:34px;height:34px;border-radius:9px;background:#EFEEE6;display:flex;align-items:center;justify-content:center;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#4A4A42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </a>
+      <div>
+        <div style="font-size:11.5px;letter-spacing:0.07em;text-transform:uppercase;color:#0A7D2C;font-weight:700;">Watoto Worship &amp; Creative Arts</div>
+        <div class="serif" style="font-size:21px;font-weight:600;color:#1F1E18;">Monthly Ministry Report</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#8B8878;">Rolls up into the Q3 Quarterly Report (Jul&ndash;Sep)</div>
+  </div>
+
+  <div style="padding:32px 48px 80px;" class="pad">
+
+    <div class="section stack" style="display:flex;gap:16px;">
+      <div style="flex:1;">
+        <label for="campus">Campus</label>
+        <select id="campus"><option value="" disabled selected>Select campus</option><option>Downtown</option><option>Kansanga</option><option>Bugolobi</option><option>Ntinda</option><option>Gayaza - Nakwero</option><option>Bweyogerere</option><option>Mukono</option><option>Kyengera</option><option>Nansana, Wakiso</option><option>Lubowa</option><option>Entebbe</option><option>Gulu</option><option>Mbarara</option><option>Jinja</option><option>Suubi</option><option>Bbira</option><option>Laminadera</option><option>Juba</option></select>
+      </div>
+      <div style="flex:1;">
+        <label for="month">Reporting month</label>
+        <select id="month"><option>July 2026</option><option>August 2026</option><option>September 2026</option></select>
+      </div>
+      <div style="flex:1;">
+        <label for="submitter">Submitted by</label>
+        <input type="text" id="submitter" placeholder="Full name">
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="eyebrow">What We Set Out To Do &amp; Did</div>
+      <div class="sectitle">Worship Delivery</div>
+      <div class="row4">
+        <div class="field"><label for="sundays">Sundays with worship delivered</label><input type="number" id="sundays" placeholder="0"></div>
+        <div class="field"><label for="evenings">Evenings of prayer/worship</label><input type="number" id="evenings" placeholder="0"></div>
+        <div class="field"><label for="weddings">Weddings facilitated</label><input type="number" id="weddings" placeholder="0"></div>
+        <div class="field"><label for="funerals">Funerals facilitated</label><input type="number" id="funerals" placeholder="0"></div>
+      </div>
+      <div class="field"><label for="specialevents">Special events (describe)</label><textarea id="specialevents" placeholder="e.g. Easter production, Hymn Night..."></textarea></div>
+    </div>
+
+    <div class="section">
+      <div class="eyebrow">Volunteers</div>
+      <div class="sectitle">Ministry Team Breakdown</div>
+      <div class="row4">
+        <div class="field"><label for="choir">Choir</label><input type="number" id="choir" placeholder="0"></div>
+        <div class="field"><label for="wleaders">Worship leaders</label><input type="number" id="wleaders" placeholder="0"></div>
+        <div class="field"><label for="bgv">BGVs</label><input type="number" id="bgv" placeholder="0"></div>
+        <div class="field"><label for="band">Band</label><input type="number" id="band" placeholder="0"></div>
+      </div>
+      <div class="row3">
+        <div class="field"><label for="dancers">Dancers</label><input type="number" id="dancers" placeholder="0"></div>
+        <div class="field"><label for="actors">Actors</label><input type="number" id="actors" placeholder="0"></div>
+        <div class="field"><label for="spoken">Spoken word</label><input type="number" id="spoken" placeholder="0"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="eyebrow">Ministry Opportunities</div>
+      <div class="sectitle">Beyond Watoto Church</div>
+      <div class="row3">
+        <div class="field"><label for="churches">Churches / events supported</label><input type="number" id="churches" placeholder="0"></div>
+        <div class="field"><label for="reached">People reached</label><input type="number" id="reached" placeholder="0"></div>
+        <div class="field"><label for="salvations">Salvations</label><input type="number" id="salvations" placeholder="0"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="eyebrow">Leadership Development</div>
+      <div class="sectitle">Discipleship &amp; Trainings</div>
+      <div class="row3">
+        <div class="field"><label for="wl101enrol">WL101 enrolments</label><input type="number" id="wl101enrol" placeholder="0"></div>
+        <div class="field"><label for="wl101active">WL101 active participants</label><input type="number" id="wl101active" placeholder="0"></div>
+        <div class="field"><label for="otherprog">Other programs (describe + count)</label><input type="text" id="otherprog" placeholder="e.g. Return to Holiness — 120"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="eyebrow">Stories of Impact</div>
+      <div class="sectitle">Lives Transformed This Month</div>
+      <div class="field"><label for="story1">Story 1</label><textarea id="story1" placeholder="Share a specific testimony or moment..." style="min-height:88px;"></textarea></div>
+      <div class="field" style="margin-bottom:0;"><label for="story2">Story 2 (optional)</label><textarea id="story2" placeholder="Share another testimony or moment..." style="min-height:88px;"></textarea></div>
+    </div>
+
+    <div class="section">
+      <div class="sectitle" style="margin-bottom:16px;">Highlights &amp; Challenges</div>
+      <div class="row2">
+        <div class="field"><label for="highlights">Key highlights</label><textarea id="highlights" placeholder="What went well this month?" style="min-height:100px;"></textarea></div>
+        <div class="field"><label for="challenges">Challenges encountered</label><textarea id="challenges" placeholder="What got in the way?" style="min-height:100px;"></textarea></div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-bottom:0;">
+      <div class="sectitle">Next Month Priorities</div>
+      <div class="field" style="margin-bottom:0;"><label for="priorities">List planned focus areas</label><textarea id="priorities" placeholder="e.g. Cantata preps, Christmas Carol Night..." style="min-height:88px;"></textarea></div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:28px;">
+      <button style="font-family:inherit;background:#FFFFFF;color:#4A4A42;border:1px solid #DAD6C9;border-radius:10px;padding:12px 22px;font-size:13.5px;font-weight:600;cursor:pointer;">Save draft</button>
+      <a href="Rollup.html" style="font-family:inherit;background:#0A7D2C;color:#fff;border:none;border-radius:10px;padding:12px 26px;font-size:13.5px;font-weight:600;cursor:pointer;display:inline-block;">Submit monthly report</a>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Quarterly Rollup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#F2F1EC}
+.serif{font-family:'Source Serif 4',Georgia,serif}
+.card{background:#FFFFFF;border:1px solid #E4E1D6;border-radius:16px;padding:22px 24px;}
+.metric{font-size:11.5px;color:#8B8878;margin-bottom:8px;}
+.metricval{font-size:26px;font-weight:600;color:#1F1E18;}
+
+/* responsive for phones/tablets */
+.page{max-width:100%;margin:0 auto;}
+@media (max-width:900px){
+ .row2,.row3,.row4{grid-template-columns:1fr !important;}
+ .stack{flex-direction:column !important;}
+ .pad{padding-left:20px !important;padding-right:20px !important;}
+ .card-link{width:100% !important;}
+}
+</style>
+</head>
+<body>
+<div class="page" style="max-width:1440px;margin:0 auto;min-height:100vh;box-sizing:border-box;background:#F2F1EC;display:flex;flex-direction:column;">
+
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:26px 48px;border-bottom:1px solid #E4E1D6;background:#FFFFFF;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <a href="MonthlyReport.html" style="width:34px;height:34px;border-radius:9px;background:#EFEEE6;display:flex;align-items:center;justify-content:center;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#4A4A42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </a>
+      <div>
+        <div style="font-size:11.5px;letter-spacing:0.07em;text-transform:uppercase;color:#0A7D2C;font-weight:700;">Watoto Worship &amp; Creative Arts</div>
+        <div class="serif" style="font-size:21px;font-weight:600;color:#1F1E18;">Q3 Rollup &mdash; Jul, Aug, Sep</div>
+      </div>
+    </div>
+    <a href="Main.html" style="font-family:inherit;background:#0A7D2C;color:#fff;border:none;border-radius:10px;padding:11px 20px;font-size:13.5px;font-weight:600;cursor:pointer;display:inline-block;">Export as Quarterly Report</a>
+  </div>
+
+  <div style="padding:28px 48px;display:flex;flex-direction:column;gap:20px;flex:1;">
+
+    <div class="stack" style="display:flex;gap:18px;">
+      <div class="card" style="flex:1;"><div class="metric">Campuses reporting</div><div class="metricval">14 <span style="font-size:14px;color:#A39D8C;font-weight:400;">/ 18</span></div></div>
+      <div class="card" style="flex:1;"><div class="metric">Sundays with worship delivered</div><div class="metricval">14</div></div>
+      <div class="card" style="flex:1;"><div class="metric">Total volunteers</div><div class="metricval">3,707</div></div>
+      <div class="card" style="flex:1;"><div class="metric">People reached beyond Watoto</div><div class="metricval">195</div></div>
+      <div class="card" style="flex:1;"><div class="metric">WL101 completion rate</div><div class="metricval">57.7%</div></div>
+    </div>
+
+    <div class="card" style="background:#20303D;border-color:#20303D;display:flex;gap:22px;align-items:flex-start;">
+      <div style="width:40px;height:40px;flex:0 0 auto;border-radius:11px;background:rgba(247,244,238,0.12);display:flex;align-items:center;justify-content:center;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F7F4EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c0-4 3-6 6-6M15 21c0-4 3-6 6-6M3 11c0-4.5 3-7 7-7M13 11c0-4.5 3-7 7-7"/></svg>
+      </div>
+      <div>
+        <div style="font-size:11px;letter-spacing:0.07em;text-transform:uppercase;color:#8DBF9C;font-weight:700;margin-bottom:8px;">Story spotlight &middot; pulled from a monthly submission</div>
+        <div class="serif" style="font-size:15.5px;color:#F7F4EE;line-height:1.6;">In June, the choir rallied around one of its leaders, Moses, from Entebbe, following the loss of his father &mdash; raising support and traveling to Mbale to stand with him at the funeral. A reminder that this rollup isn't just numbers; it's teams caring for each other.</div>
+        <div style="font-size:12.5px;color:#9AA8B0;margin-top:10px;">&mdash; Entebbe campus, July submission</div>
+      </div>
+    </div>
+
+    <div class="stack" style="display:flex;gap:18px;flex:1;">
+      <div class="card" style="flex:1.3;display:flex;flex-direction:column;">
+        <div style="font-size:15px;font-weight:600;color:#1F1E18;margin-bottom:14px;">Volunteers by ministry team</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-bottom:1px solid #EFEEE6;"><span>Choir</span><span style="font-weight:600;">1,251</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-bottom:1px solid #EFEEE6;"><span>Band</span><span style="font-weight:600;">538</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-bottom:1px solid #EFEEE6;"><span>BGVs</span><span style="font-weight:600;">478</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-bottom:1px solid #EFEEE6;"><span>Actors</span><span style="font-weight:600;">621</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-bottom:1px solid #EFEEE6;"><span>Spoken word</span><span style="font-weight:600;">29</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;border-bottom:1px solid #EFEEE6;"><span>Worship leaders</span><span style="font-weight:600;">353</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13.5px;padding:9px 0;"><span>Dancers</span><span style="font-weight:600;">437</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="flex:1;display:flex;flex-direction:column;">
+        <div style="font-size:15px;font-weight:600;color:#1F1E18;margin-bottom:14px;">Submissions by month</div>
+        <div style="display:flex;flex-direction:column;gap:12px;flex:1;justify-content:center;">
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span>July</span><span style="color:#8B8878;">16 / 18</span></div><div style="height:8px;border-radius:4px;background:#EFEEE6;"><div style="width:89%;height:100%;border-radius:4px;background:#0A7D2C;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span>August</span><span style="color:#8B8878;">15 / 18</span></div><div style="height:8px;border-radius:4px;background:#EFEEE6;"><div style="width:83%;height:100%;border-radius:4px;background:#0A7D2C;"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span>September</span><span style="color:#8B8878;">14 / 18</span></div><div style="height:8px;border-radius:4px;background:#EFEEE6;"><div style="width:78%;height:100%;border-radius:4px;background:#B4462B;"></div></div></div>
+        </div>
+      </div>
+
+      <div class="card" style="flex:1.3;display:flex;flex-direction:column;">
+        <div style="font-size:15px;font-weight:600;color:#1F1E18;margin-bottom:14px;">Recurring challenges flagged</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="font-size:13.5px;padding:10px 12px;background:#FBEDE6;border-radius:9px;color:#8A3A20;">Limited rehearsal equipment &mdash; mentioned by 9 campuses</div>
+          <div style="font-size:13.5px;padding:10px 12px;background:#FBEDE6;border-radius:9px;color:#8A3A20;">Insufficient Youth/Children's Church gear &mdash; mentioned by 6 campuses</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

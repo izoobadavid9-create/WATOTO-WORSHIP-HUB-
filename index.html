@@ -165,6 +165,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 .rt-body{display:none;border-top:1px solid var(--rule);padding:12px 12px 6px;background:var(--paper-soft,transparent)}
 .rtile.on .rt-body{display:block}
 
+.rolegrp{margin-top:14px}
+.rolegrp:first-of-type{margin-top:8px}
+.rolegrp h5{
+  margin:0 0 7px;font-family:var(--display);font-weight:600;font-size:12.5px;
+  letter-spacing:.01em;color:var(--ink-soft);
+}
 .empty-note{
   margin:26px 0 0;padding:26px 18px;text-align:center;border:1px dashed var(--rule);
   border-radius:var(--radius);color:var(--ink-soft);font-size:14px;
@@ -334,13 +340,17 @@ const REGIONS = [
   {id:'eastern',  name:'Eastern',             color:'#8A6A1C', campuses:['Bweyogerere','Mukono']},
   {id:'western',  name:'Western',             color:'#A2452A', campuses:['Kyengera','Nansana']},
   {id:'southern', name:'Southern',            color:'#6B4E9B', campuses:['Lubowa','Entebbe']},
-  {id:'beyond',   name:'Beyond Kampala',      color:'#1F7A6E', campuses:['Juba','Mbarara','Gulu','Laminadera']},
-  {id:'villages', name:'Watoto Villages',     color:'#B06A2C', campuses:['Suubi','Bbira']}
+  {id:'beyond',   name:'Beyond Kampala',      color:'#1F7A6E', campuses:['Jinja','Mbarara','Gulu','Juba']},
+  {id:'villages', name:'Watoto Villages',     color:'#B06A2C', campuses:['Suubi','Bbira','Laminadera']}
 ];
 const ALL = REGIONS.flatMap(r => r.campuses.map(c => ({campus:c, region:r})));
 
-const ROLES = ['Worship leaders','Musicians','BGVs','Choir','Morph singers','Morph band',
-               'Kids singers','Kids band','Dancers','Actors','Spoken word'];
+const ROLE_GROUPS = [
+  {g:'Adult church',       items:['Singers','Choir','Instrumentalists','Creatives']},
+  {g:'Morph',              items:['Singers','Instrumentalists','Creatives']},
+  {g:"Children's church",  items:['Singers','Instrumentalists','Creatives']}
+];
+const ROLES = ROLE_GROUPS.flatMap(x => x.items.map(i => x.g + ': ' + i));
 const SERVICES = ['Sunday services','Evenings of prayer','Weddings','Funerals'];
 const MONTHS = (() => {
   const out=[], now=new Date();
@@ -547,9 +557,14 @@ function reportSheet(c){
   </div>
 
   <div class="block">
-    <h4>Number of people who served</h4>
-    <p class="hint">Count each person once, under the role they served in. Required for every role your campus runs.</p>
-    <div class="grid g4">${ROLES.map(r => num(r,r,'roles')).join('')}</div>
+    <h4>People actively serving</h4>
+    <p class="hint">Count everyone on the active team this month, not only those who served last Sunday.
+       Each person once, under the role they mainly serve in. Enter 0 where the campus has none.</p>
+    ${ROLE_GROUPS.map(x => `
+      <div class="rolegrp">
+        <h5>${x.g}</h5>
+        <div class="grid g4">${x.items.map(i => num(x.g+': '+i, i, 'roles')).join('')}</div>
+      </div>`).join('')}
   </div>
 
   <div class="block">
@@ -568,16 +583,23 @@ function reportSheet(c){
   </div>
 
   <div class="block">
-    <h4>What went well and what did not</h4>
+    <h4>Highlights and challenges</h4>
     <p class="hint">Be specific. Name the problem and what you need, so leadership can act on it.</p>
     <div class="grid g2">
-      ${area('well','What went well','What worked, and why.')}
-      ${area('hard','What did not go well','What failed or was missing, and what you need to fix it.')}
+      ${area('well','Highlights','What worked this month, and why.')}
+      ${area('hard','Challenges','What failed or was missing, and what it would take to fix it.')}
     </div>
   </div>
 
   <div class="block">
-    <h4>Plans for next month</h4>
+    <h4>Pressing needs</h4>
+    <p class="hint">A short list of what the campus needs next month. One per line, no explanation —
+       anything you have explained above that must not be missed. Example: choir monitors · drum kit service due · last set of guitar strings.</p>
+    ${area('needs','','Choir monitors\nGear service due\nGuitar strings')}
+  </div>
+
+  <div class="block">
+    <h4>Focus areas for next month</h4>
     <p class="hint">List what the team will focus on and the dates that matter.</p>
     ${area('next','','Example: rehearsals for the Christmas production begin 14 November.')}
   </div>
@@ -744,7 +766,7 @@ function buildCSV(){
     ...SERVICES.map(s => 'Services: ' + s), 'Total gatherings',
     ...ROLES.map(r => 'Serving: ' + r), 'Total serving',
     'Services and events','Training and leadership','Impact story',
-    'What went well','What did not go well','Plans for next month','Video link','Photos attached'];
+    'Highlights','Challenges','Pressing needs','Focus areas next month','Video link','Photos attached'];
 
   const rows = ALL.map(({campus, region}) => {
     const rep = reportOf(campus, month);
@@ -753,7 +775,7 @@ function buildCSV(){
       ...SERVICES.map(s => rep.services[s] ?? ''), gatherings(campus, month),
       ...ROLES.map(r => rep.roles[r] ?? ''), serving(campus, month),
       rep.text.activity ?? '', rep.text.cmf ?? '', rep.text.story ?? '',
-      rep.text.well ?? '', rep.text.hard ?? '', rep.text.next ?? '',
+      rep.text.well ?? '', rep.text.hard ?? '', rep.text.needs ?? '', rep.text.next ?? '',
       rep.text.video ?? '', (rep.photos || []).length];
   });
 

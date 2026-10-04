@@ -434,14 +434,14 @@ async function flushCloud(){
   });
   cloudSay('Saving to the shared record…');
   try{
-    const res = await fetch(REST, {method:'POST',
+    const res = await fetch(REST + '?on_conflict=campus,month', {method:'POST',
       headers: Object.assign({Prefer: 'resolution=merge-duplicates,return=minimal'}, SB_H),
       body: JSON.stringify(body)});
     if(!res.ok) throw new Error('HTTP ' + res.status + ' ' + (await res.text()).slice(0,120));
     cloudSay('Saved to the shared record', 'ok');
   }catch(e){
     keys.forEach(k => pending.add(k));
-    cloudSay('Could not reach the shared record — kept on this device', 'warn');
+    cloudSay('Not saved to shared record (' + (e.message || 'no connection') + ') — kept on this device', 'warn');
   }
 }
 

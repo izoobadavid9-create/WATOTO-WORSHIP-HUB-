@@ -273,6 +273,9 @@ input[type=number]{-moz-appearance:textfield}
 .saved{font-size:13px;color:var(--green);align-self:center;opacity:0;transition:opacity .2s}
 .saved.show{opacity:1}
 
+.cloud{display:inline-block;margin-left:6px;opacity:.8}
+.cloud.ok{color:var(--green-lift)}
+.cloud.warn{color:var(--amber)}
 .foot{
   max-width:1080px;margin:0 auto;padding:0 22px 46px;color:var(--ink-faint);font-size:12.5px;
 }
@@ -301,12 +304,11 @@ input[type=number]{-moz-appearance:textfield}
   <div class="stage-in">
     <div class="bar">
       <div class="mark">
-        <img class="logo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwQDAwQEBAQFBQQFBwsHBwYGBw4KCggLEA4RERAOEA8SFBoWEhMYEw8QFh8XGBsbHR0dERYgIh8cIhocHRz/2wBDAQUFBQcGBw0HBw0cEhASHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBwcHBz/wAARCACgAKADASIAAhEBAxEB/8QAHQAAAgIDAQEBAAAAAAAAAAAAAwQABwEGCAUCCf/EADwQAAIBAwIEAwYEAwYHAAAAAAECAwAEBQYRBxIhMUFRYQgTIjJxgRRSkaEWQoIXIyQzYpIlQ1OxssLw/8QAGwEBAAIDAQEAAAAAAAAAAAAAAwAEAQIGBQf/xAAvEQACAgEBBgQGAgMBAAAAAAABAgADBBEFEiExQVFhcYHwE5GhscHRFDIi4fEj/9oADAMBAAIRAxEAPwDRVaiq9KK1GVq+ckT5yjxtWoytSitRlaiIllWjSNRkelFaiq/WiKx1aOq1GVtqSV6MrUTLHVo4rbkUZWpNWoytQssZWjiN260ZWpNXoyv60RWMrRxWoytSatRlahZYytHEajo9Jq1FV6JljK0dRhR1akkejK1CyxVaOq9GV6SR6Or0LLHUyhkejo1Iq9HR67ZlnzquyOq1GVqTVvWjK3jRMsto8cRqKrUmrUdW9aIiWFaNI3Wjq1Jq1GVqIiOrRtWoytSitRlahZYytG1ajK21Jq9GVqJljq0cV6MrUmrbUVGomEZWjqvRkak0ejK1CyxlaOI1HV6SVqMjdKJljK0dVqMj0mj0ZXoWWMrShwaKr7UGvoehrtTPmoaNo9HVqRV9qOjUTLLddkdVvGjK1Jo9GVqJlltHjavRlalFajK1ERLCtG1bajI1Jq1FVu1ERHVo4rUZGpRG3oqtQssdWjitRlak1ajK1EwjK0cR6MrUkrUdHoisZWjitvR1aklajK3ShKxlaOK1HV6SVqMr0RWMrSkqyK+ayK7CfOAZ9A0VXoIq9uB3AT+P7c5/UDz22n1YrDHEeSS7YdzzfyoD03HUnfbbbekpoe99xBxlzExrcmwV1DUylkbpR0bevX19Fp+z1jlrbSzStg4ZfdwPLJzliAAxDdyvNvtv4V4KPVeyvdYr2ia7jFCddI6rUzbxyXE0cMMbyzSHlSNFLMx8gB1Jr2tA6DzPEPNLjcRCPh2ae5k391bp+Zj/ANgOp/euiMpdaM9nDFLbY22jy2s7iPf3k23vAD/MxH+Wnkq9W9eppaMI2qbXO6g6/rvPVxcVrUNrndQdT+O8oDP6H1FpOysbzNYqaxhviwh98QGJA3IK77r38QK8RW3p7UursxrHJvkc1fSXVy3RQx2SMflReyj0H715itVG4JvH4eunjzmGZN7/AM9dPGNhqMrVZ/CrgvLxC09l8pNcyWgTeHHtt8Mkw6sW/wBA6L08SfKqvuIJbG6ntrhOSeCRopE/Kykgj9RWtuLZWi2MODcpZNboquw4HlDK1GV6UVqKrVTZZlWjqtRVak1erd4fcGp9aaQyGYa4e3uWYpj1O3JKV+Yt6E/CCO2xPWt6MS3JfcqGp01lqlGsOiStEajK1KsrwyPHIpV0YqwPgQdiKIrVSZZuGjivRlak1ajK9CRGVpTtSsVK6yfPZu/CnQE/EjWdlhk50sx/f3ky944FI5tvU7hR6n0rpj2jdfW/D/R1no3A8lpd5CD3XLD8P4azUcp28i3yj0DGm/Zn0hb6O4dT6lyAWG4y6m6eR+nu7ZAeT7bcz/1Cqx0tjLbinrHUXFLWJMOjcZKWijmG4mCbCOIDxAHLuB8zNt4mvaqqanHCJ/ez6D39512Pjti4a118LLuZ7L3+X3msaK9nDVusdONmla1x8MkfPZw3fMHuR4HYD4FPgT377bda0jR+iMxrHVcOm7GDlvjIyTFx8NuqnZ3fbwX9zsB3r9CdUZ1NO6SyuYCH/B2jzpGV6lgu6rt5k7Daqk0Lg7DgHw0yGqNSDnz98ouLw7j3jSN1S3U+e56+pY9hW1uzKlZRrwA1YxLth0VvWoJAAJc+H414+kmrdR4H2ctDW2DwUcc2eu1JiEgBaR+zXEu3hv0A8egHQGuU8rBnshD/ABLlYL6WDJTN/wARnQ8k8njs3Y/bp02HarV4X6IyfHnW9/q3VJZ8NFNvMoJCzMPlt08kUbb+nTuxNW97QWt8LpzSE2kLewhvcnkLblis4490tIVH+cVHy8u3w7eI37A0N9P8mo2sd1F/qPfeZsQ5dJyGO5Wv9B3/AO+/HkrCYLK6iuWtsRjbu/uFHMY7aIyFR5nbsPrW/wCH4C6/yk0KNgpLKKRgGmupY0EYJ6sV5tzt322rVOG+u7rh9quyzVvzyQqfd3Nurbe/hb5l8t+xHqBXbXDTiTb8S7K/v7HF3lnYW0ohSW6K7zNtu2wUnbbcePjVPZ+FjZPCxjvdvYmmzMbHyRo7He7T0ocHNpLRAxOmbeJ7qytfdWiTNyK0m3RmPqxLHzrl699njXMay3l1LimZiZJJHvdt2J3JJKgdTua33jjx0ymmc5JpvTbwwzwxqbq8ZQ7xuw3CID0BAIJJB71RGLi1PxS1HbY03t3kr+5bfmupmZIlHzO3gqgeQ8gO9WNp3Y1rigKWK8AAdB+Z6GdkUO4pUEkcNBwE87MYqfT+QksbuW1aZACTb3CTJ18mUkb+nhTOGweUz8zQYrHXd9MgBZbaIuVB89u33rsrRXCjTWhcE1qbS2u5pE/xd5dRKTL069+ip6frv3qk85vwP4mWucw0EsmksrEGVYn5o5EYbtGrdiVOzLv4Hy3qjfsc0BbLTopPHTiR+/GG+AaQHsPA8/Ca5heB2tspdW8c2Iext5HAknuJEX3ak9W5d9zsPDaurL3F3eC0c+M0zBELu2thBZrK/KqnbYMTt4fN6mkuHuvoOIONusjZ466tLGKYwxvcld5SBuxAUnYDcD6/Sqo4x8a8phc7cae07LFAbZQLm85Q7iQjcou/QbAjc7E7+W1etVVh7NxzerEhuGvX05T0UWjFqNgJIPvhNPu+AmrrOFri4mxQXuzSXnLufMkqBVe5Owlw19LZ3Ets8se27W86yod/JlOxr0cLY6h4m6igx/4u5vryY8zy3UrOsSDu7b9gPT0ArrXSfDfT+jcGbGO0guOdf8TcXMas0x26k79Avp2A/WvCx9lptAk0KUUdSddfTQfeVqaBfxrGg7mcaI9GVq3ni7oyDS+eS9xNvtp/IxrLbyxHmiDEfEit5eIHkenatAV68LKxmx7WqfmITKUYqZVNevpXAS6p1LicLBv7zIXMdvzD+UM3xH7Dc/avHq8/ZU0+MtxNOQdd48TZyTAkfzvtGv7Mx+1dNj1/FtVO5nFYNH8jISrufp1nS/FPG3Fzo2w0VgdoJs3JHjEZe1vaqN5X+gjTl9SwHjVO5jIWOo+JujeFOm1C6V09cq92EPS4lhBd+Y+IBBB82Zj4Crf458QU4d6JuL63KDNXe9pYEgcyuw+Jx6KBzfULVAeyLivx+u8zlJd3NlY8oZjueeVx1389kb9a97KYHIWleZ018hx09f1Oyz7FbNrxU5tpr4KOOnrzPhpOyJoIriL3c0aSRkhuVwCNwdx0PkQD9q4840ajv+MXFLH6FwMnNY2NwbcMOqNN/wA2U7d1RQR9m866F41a7/s+0BksjC4XIzj8LZjx98+4Df0jdv6aqD2R9FBbTLaxu0LTTubK1Z+p5RsZW+7bDf8A0mkzD8axcVevE+UfaTHJvTATrxbyHT1/UtzN5PB8CeGKtbxD8NjohBbQk7Nczt23Pmzbsx8tz4Vpfs+aQv76PI8RNTEz53URJhMi/wCXbk9wPANsNh4Kq+ZrwtfWcvGnjJBpcOV0npRRLk5QdlMh6su/mQAnoA5qzOKOs7fS/CLI5rEuqJNaJFYMg5QPe7KjKPAAHmH0qaqzmw/0r5eY5n05CbBle1rm4V1A6DuRzPpyE404hti8hxEzcWmLER4+S8MNrBBuRI+4U8g8Az7kAdOo2rtnSeKteE/C6CK65QuKsmubtht8cmxeT9W3A+1Uf7NvChLM2uttRIsIdgmJgn6FmboJiD4nso+reVWN7TudOI4YTWqNs+UuYrXbx5Ny7fsm33qnh1GiqzLcaEg6D33lTZ1bUUWZ1g0JBIHYc/rOOsrl7jN5S9yd4/NdXsz3ErH8zHc/p2+1dl+z3w+TSOj4srdRbZfMIs0hYfFHCescf6fEfU+lURwF4THW2TXOZiLl05YyAcr9BeTA9Ix5qDtzefRfE7dLcY9cf2faEvL22KpkJ9rWzHlIwPxbf6VBb7Cg2XjioNmXdOX5P6k2TTuI2Zdy6fk/qU7x74n3WoMwdDaelZoverb3bxHrcTEgCEEfygkb+Z6dh12b2gLCLB8JdO4cEPNbXNtbxDxYpEwO3/3jWj+zXw+lzedfV2QjZrHHuRbGTr764Pd/Xl3PX8x9DWy8Rs/BrnjbpLSkDCWxxN2rXG3UNL87j+lUC/Umsbz20PdbztIVR4axld7KWus52EADwlsYa3tuF/C+ETABcRYGaYdueXbmb9XO33riS8yE+RvLm9u5C9xcSNNK58WYkn9zXV3tLZs43h8lkjEPk7uOFgPFF3dv/Ff1qqOBXC0aqyCagzEQGCtJAIkkHS7mB6D1UHv5np50W1amyMivDp5KPl/wTfNVrbkxq+g9/SXbwQ0Gmj9Jw3dzEBlsoqzzkjqinqkf2B3PqTVe8cuJdxlsk2jcDIxQOIbt4j1mlJ2EI28ASN/M9PA72zxY1n/Aui7u+hYC/m2trQH/AKjb/F/SAW+1Ud7PmhZc9n21PfozWOOc+5Z+vvrg+Pry77k/mI8jVjNBUV7MxuGvM9h1+fX/AHLNx3d3Fq9fKbtxrtI9PcJsFh2YGWGa2gXr3KRtzEfp+9c3q1Wl7QGs49QaqjxNrIHs8OGjZgejTttz/wC0AL9d6qdXrnNtWJblEJyUAfKU8qwNaQvThK1rrr2O8P7nA6ly5Trc3UdqrHyjTmI/WQVyLWzaR4hal0K1ycBl57NLlSssY2ZH6bb8rAjmHgw6ivWw7lotFjDXScfsvLrxMlbrBqBrym7+0Zr3+NOINzbW8vPi8LvZwbH4WcH+9f7sNvogq1vY2tlTGatuiPiee3i39AjH/wBq5MJJJJJJPUk9zXvaW1rn9E3pvMDlbixmbbnEbbpIB2Dod1YfUVvTl7uT8dxrzjYu0tzO/mXDXXX6jT6S5vaz1gcrrOy09C+9th4RJKoPQzygHr9EC/7jXQ3Ad8aeE2m4sXdRTJFbATFDvyTklpFYeBDE9DXAeazV9qLLXmVyVwZ7+8kMs0pAHMx9B0HlsKZwOqs5paWWXCZe+x0kw5ZDazMnOPUDoaaraG5kNcw1BlrH20Ks2zJddQ3DxA6ToTjDqvHcMNL3mgdO3jXWfy7vcZvJHYSMZOrBtuzPvty/yp6ner0wGN07rbhZpZ8tDb3WIhsrW5KzNyxK0UY+bqBspB3B6dOtfnnNPLcTSTTSPLNIxd5HYszMepJJ7n1p5c9lVxRxQyd6MUzc5sxO3uSfPk32/apXtHddmZdQRoB299Zmjbu5a7OmqkaAdvfWdDam49Wea4xaXa3n5NHYS8Ch/lWVmUxtOR+VQ3w+gJ8avfifwzs+JyYJb/JPbYjHTPczpEBvOpTYAPvso2369eh6bd6/POvdk1lqKbDJhpM7knxCDlFm1y5iA8uXft6dqxXtHg63LvBuP+vKbY+3OFi5K7wY69vTy4CX5q/jhh7DWemcNgIhHojTd3G8osx0uSm4+AeKJvuPzMN/I1cOtNE4bjrY6bv7TUG+EtJHlf8ACAMZwwUbbn5GG23Ubjc9K4LR69rB6ly+nJmmxGUvcfK/zNazNHzfXY7H70abRP8Akty7yt07afiJj7Z3iy5C7yt05aacgPDwnafFHX2J4O6Nhw+EWCHKPD7jH2cfX3K9jKw8h1PX5m+9cw8KNSQYHiVgstkpj7gXLLPNI2+3vFZS7H6tuT9a0a7yFzkrqS6vbma5upTu80zl3c+pPU18q3hVXKznuuWwDQLyE3v2k11q2AaBeQne3EnhvZcRJsHJkr9oMVi3lnnjToZgQu3x7/CAAdz5Hpt3qmtQ8a8Vba507Y4mHl0Xp+cbrarsJ2CledR4om+4HjsT5VRkur8/dYlMRPmsjJi0AVbR7hjGB4Dl37enavNVqTL2rvtvUruk6EnvpyHl95cu2mHO9UuhOmp76dPKdu620TjuM1lp27tM6BhreR5Xa2UOZgwA2B3+FhsR1B23PSvJ4na8xfCnS0WnNPiKHKtD7q2hj6/hUPeVvXvtv1JO/nXKGG1LmNPmQ4nK3tiZPn/DTMgb6gHY0rLdTXU0k1xLJNNIeZ5JGLMx8yT1NS7bAKs1SbtjcCdft7+cdtpAgsi6MeZ/UZEhdizMSxO5JO5J8yaKr+tJq/ajK1c4wlFWmg1ip41mvbnITFZqVKkkxUqVnxqSTFSs1KkkyDWa+agNYmQZ970VG2oNZBrBE3U6RxHo6tSKPR1faiZZbrsjqtRValFajK1Eyy0jxxWoqtSaNRlaiIllWjit60ZXpMNRkaiIjq00ypUqV605aSpUqVJJis1ipUkmfCsVKzUkkqeNSpUkmayDXzUFYmQZ9g0VHoIr6BrBE3VtI2j+tHR6RR6Oj0bLLddkdVqKrUojUZWoSsto8bV6MrUor0ZWomEsK01as1KxXoznZKzUqVJJKlT1rFSSZ3qVis1JJipWahqSSVO1SpvUkmRWRXzUB6ViZBn2DRUegisg1gibq2kcV6OrUir0dHo2WW67I6rUVWpRWoyt0oSsto8//9k=" alt="Watoto">
+        <img class="logo" src="watoto-logo.jpg" alt="Watoto">
         <span>Worship Arts</span>
       </div>
       <div class="bar-right">
         <select class="month" id="month" aria-label="Reporting month"></select>
-        <button class="month" id="exportBtn">Export CSV</button>
         <button class="ghost" id="themeBtn" aria-label="Switch between light and dark">◐</button>
       </div>
     </div>
@@ -330,7 +332,8 @@ input[type=number]{-moz-appearance:textfield}
   <div class="regions" id="regions"></div>
 </main>
 
-<p class="foot">Watoto Church · Worship &amp; Creative Arts. Monthly ministry reporting. Entries are kept on this device until the hub is connected to the shared database.</p>
+<p class="foot">Watoto Church · Worship &amp; Creative Arts. Monthly ministry reporting.
+  <span id="cloud" class="cloud">Connecting to the shared record…</span></p>
 
 <script>
 /* ---------------- data ---------------- */
@@ -346,11 +349,17 @@ const REGIONS = [
 const ALL = REGIONS.flatMap(r => r.campuses.map(c => ({campus:c, region:r})));
 
 const ROLE_GROUPS = [
-  {g:'Adult church',       items:['Singers','Choir','Instrumentalists','Creatives']},
-  {g:'Morph',              items:['Singers','Instrumentalists','Creatives']},
-  {g:"Children's church",  items:['Singers','Instrumentalists','Creatives']}
+  {g:'Adult church',       items:['Singers','Choir members','Choir attendance','Instrumentalists']},
+  {g:'Morph',              items:['Singers','Instrumentalists']},
+  {g:"Children's church",  items:['Singers','Instrumentalists']}
 ];
-const ROLES = ROLE_GROUPS.flatMap(x => x.items.map(i => x.g + ': ' + i));
+/* creative arts stand on their own, campus-wide, not split by congregation */
+const CREATIVES = ['Dancers','Actors','Spoken word','Other creatives'];
+const ROLES = ROLE_GROUPS.flatMap(x => x.items.map(i => x.g + ': ' + i))
+  .concat(CREATIVES.map(i => 'Creatives: ' + i));
+/* attendance figures describe turnout, not extra people - excluded from headcount totals */
+const ATTENDANCE_KEYS = ['Adult church: Choir attendance'];
+const COUNT_ROLES = ROLES.filter(r => !ATTENDANCE_KEYS.includes(r));
 const SERVICES = ['Sunday services','Evenings of prayer','Weddings','Funerals'];
 const MONTHS = (() => {
   const out=[], now=new Date();
@@ -366,9 +375,72 @@ const MONTHS = (() => {
 const KEY='watoto-worship-arts-v1';
 let DB = {reports:{}};
 try{ const raw=localStorage.getItem(KEY); if(raw) DB = Object.assign(DB, JSON.parse(raw)); }catch(e){}
-function save(){
+function save(campus){
+  if(typeof cloudPush === 'function') cloudPush(campus || open);
   try{ localStorage.setItem(KEY, JSON.stringify(DB)); return true; }
   catch(e){ return false; }
+}
+
+/* ---------------- shared record (Supabase) ---------------- */
+const SB_URL = 'https://vjjpwylxulcqksycdnnb.supabase.co';
+const SB_KEY = 'sb_publishable_tFfmkmgCnqAE8qes3EIgMg_GBlh-Bfy';
+const SB_H = {apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, 'Content-Type': 'application/json'};
+const REST = SB_URL + '/rest/v1/reports';
+
+function cloudSay(msg, cls){
+  const el = document.getElementById('cloud');
+  if(el){ el.textContent = msg; el.className = 'cloud ' + (cls||''); }
+}
+
+async function cloudLoad(){
+  try{
+    const res = await fetch(REST + '?select=campus,month,status,services,roles,text,photos', {headers: SB_H});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const rows = await res.json();
+    rows.forEach(r => {
+      DB.reports[r.campus + '|' + r.month] = {
+        status: r.status || 'draft',
+        services: r.services || {}, roles: r.roles || {},
+        text: r.text || {}, photos: r.photos || []
+      };
+    });
+    save();
+    cloudSay('Shared record connected · ' + rows.length + ' report' + (rows.length===1?'':'s') + ' loaded', 'ok');
+    render();
+  }catch(e){
+    cloudSay('Working offline — saved on this device only', 'warn');
+  }
+}
+
+const pending = new Set();
+let pushTimer = null;
+function cloudPush(campus){
+  if(!campus) return;
+  pending.add(campus + '|' + month);
+  clearTimeout(pushTimer);
+  pushTimer = setTimeout(flushCloud, 900);
+}
+async function flushCloud(){
+  const keys = [...pending]; pending.clear();
+  if(!keys.length) return;
+  const body = keys.map(k => {
+    const [campus, m] = k.split('|');
+    const r = DB.reports[k] || {};
+    return {campus, month: m, status: r.status || 'draft',
+      services: r.services || {}, roles: r.roles || {},
+      text: r.text || {}, photos: r.photos || []};
+  });
+  cloudSay('Saving to the shared record…');
+  try{
+    const res = await fetch(REST, {method:'POST',
+      headers: Object.assign({Prefer: 'resolution=merge-duplicates,return=minimal'}, SB_H),
+      body: JSON.stringify(body)});
+    if(!res.ok) throw new Error('HTTP ' + res.status + ' ' + (await res.text()).slice(0,120));
+    cloudSay('Saved to the shared record', 'ok');
+  }catch(e){
+    keys.forEach(k => pending.add(k));
+    cloudSay('Could not reach the shared record — kept on this device', 'warn');
+  }
 }
 
 function reportOf(campus, month){
@@ -383,7 +455,7 @@ function gatherings(campus, month){
 }
 function serving(campus, month){
   const rep = reportOf(campus, month);
-  return ROLES.reduce((s,k) => s + (+rep.roles[k]||0), 0);
+  return COUNT_ROLES.reduce((s,k) => s + (+rep.roles[k]||0), 0);
 }
 
 /* ---------------- state ---------------- */
@@ -552,14 +624,17 @@ function reportSheet(c){
   return `
   <div class="block">
     <h4>Number of services and events held</h4>
-    <p class="hint">Enter how many of each were held at ${c} this month. Enter 0 if there were none.</p>
+    <p class="hint">How many of each did ${c} hold this month? If there weren’t any of something, a zero is perfectly fine.</p>
     <div class="grid g4">${SERVICES.map(s => num(s,s,'services')).join('')}</div>
   </div>
 
   <div class="block">
     <h4>People actively serving</h4>
-    <p class="hint">Count everyone on the active team this month, not only those who served last Sunday.
-       Each person once, under the role they mainly serve in. Enter 0 where the campus has none.</p>
+    <p class="hint">How many people are actively serving this month? Count the people who call this campus home —
+       the ones whose cell is here — even if they served at another campus this month. If a team rotated in to help
+       you, leave them out; their own campus will count them. Think of everyone who’s part of the team right now,
+       not just last Sunday’s line-up, and leave a zero if there’s no one in a spot. For choir, there are two boxes:
+       how many are on the choir, and how many usually turn up on a Sunday.</p>
     ${ROLE_GROUPS.map(x => `
       <div class="rolegrp">
         <h5>${x.g}</h5>
@@ -568,23 +643,30 @@ function reportSheet(c){
   </div>
 
   <div class="block">
-    <h4>What the team did</h4>
-    <p class="hint">Two short paragraphs. Write what actually happened, not what was planned.</p>
-    <div class="grid g2">
-      ${area('activity','Services and events','List the services and events the team led, and what each one required.')}
-      ${area('cmf','Training and leadership development','How many enrolled in CMF, who you are training, and what stage they have reached.')}
-    </div>
+    <h4>Creatives</h4>
+    <p class="hint">How many serve in the creative arts? Your dancers, drama folk and spoken word —
+       count each person once. If a group hasn’t started yet, just leave a zero, that’s okay.</p>
+    <div class="grid g4">${CREATIVES.map(i => num('Creatives: '+i, i, 'roles')).join('')}</div>
+  </div>
+
+  <div class="block">
+    <h4>Training and leadership development</h4>
+    <p class="hint">Who is growing on the team this month? How many are enrolled in CMF,
+       who you are walking with, and what stage they have reached.</p>
+    ${area('cmf','','Example: four on the CMF foundation module, two being trained on the sound desk.')}
   </div>
 
   <div class="block">
     <h4>Impact story</h4>
-    <p class="hint">Describe one person whose life changed this month. Say who they are, what happened, and what the result was.</p>
+    <p class="hint">Whose life was touched this month? Tell us about one person — who they are,
+       what happened, and where they are now. We’d love to hear it.</p>
     ${area('story','','Example: a team member who joined as a volunteer and is now leading a Sunday set.')}
   </div>
 
   <div class="block">
     <h4>Highlights and challenges</h4>
-    <p class="hint">Be specific. Name the problem and what you need, so leadership can act on it.</p>
+    <p class="hint">What went well this month, and what got in the way? The more specific you can be,
+       the easier it is for us to come alongside you.</p>
     <div class="grid g2">
       ${area('well','Highlights','What worked this month, and why.')}
       ${area('hard','Challenges','What failed or was missing, and what it would take to fix it.')}
@@ -593,20 +675,22 @@ function reportSheet(c){
 
   <div class="block">
     <h4>Pressing needs</h4>
-    <p class="hint">A short list of what the campus needs next month. One per line, no explanation —
-       anything you have explained above that must not be missed. Example: choir monitors · drum kit service due · last set of guitar strings.</p>
+    <p class="hint">What does the team need next month? Just jot them down, one per line —
+       no need to explain, you’ve already said it above. For example: choir monitors · drum kit service due · guitar strings.</p>
     ${area('needs','','Choir monitors\nGear service due\nGuitar strings')}
   </div>
 
   <div class="block">
     <h4>Focus areas for next month</h4>
-    <p class="hint">List what the team will focus on and the dates that matter.</p>
+    <p class="hint">What is the team setting its heart on next month? Pop in the dates that matter,
+       so nobody misses them.</p>
     ${area('next','','Example: rehearsals for the Christmas production begin 14 November.')}
   </div>
 
   <div class="block">
     <h4>Photos</h4>
-    <p class="hint">Drag photos onto the box below, or tap it to choose from your phone. Up to 6 photos per report.</p>
+    <p class="hint">Any photos from this month? Drag them onto the box below, or tap it to pick some from your phone —
+       up to six. They bring the report to life.</p>
     <div class="drop" data-drop tabindex="0" role="button" aria-label="Add photos">
       <strong>Drop photos here</strong>
       <span>or tap to choose files &middot; JPG or PNG</span>
@@ -623,7 +707,8 @@ function reportSheet(c){
 
   <div class="block">
     <h4>Video link</h4>
-    <p class="hint">Videos are too large to store here. Upload the video to Drive or YouTube and paste the link.</p>
+    <p class="hint">Is there a video we should see? Videos are a bit too big to keep here, so pop it on
+       Drive or YouTube and paste the link below.</p>
     ${area('video','','https://')}
   </div>
 
@@ -682,7 +767,7 @@ function wire(){
   document.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => {
     const c = b.dataset.campus, act = b.dataset.act;
     reportOf(c, month).status = act === 'submit' ? 'submitted' : 'draft';
-    save(); render();
+    save(c); render();
     const p = document.querySelector('.channel.open .panel'); if(p) flash(p);
   }));
 }
@@ -754,63 +839,9 @@ async function addPhotos(campus, fileList){
   }
 }
 
-/* ---------------- CSV export ---------------- */
-function csvCell(v){
-  const t = (v == null ? '' : String(v));
-  return /[",\n]/.test(t) ? '"' + t.replace(/"/g,'""') + '"' : t;
-}
-
-function buildCSV(){
-  const label = (MONTHS.find(m => m.k === month) || {}).label || month;
-  const cols = ['Month','Region','Campus','Status',
-    ...SERVICES.map(s => 'Services: ' + s), 'Total gatherings',
-    ...ROLES.map(r => 'Serving: ' + r), 'Total serving',
-    'Services and events','Training and leadership','Impact story',
-    'Highlights','Challenges','Pressing needs','Focus areas next month','Video link','Photos attached'];
-
-  const rows = ALL.map(({campus, region}) => {
-    const rep = reportOf(campus, month);
-    const status = rep.status === 'submitted' ? 'Reported' : rep.status === 'draft' ? 'Draft' : 'Not submitted';
-    return [label, region.name, campus, status,
-      ...SERVICES.map(s => rep.services[s] ?? ''), gatherings(campus, month),
-      ...ROLES.map(r => rep.roles[r] ?? ''), serving(campus, month),
-      rep.text.activity ?? '', rep.text.cmf ?? '', rep.text.story ?? '',
-      rep.text.well ?? '', rep.text.hard ?? '', rep.text.needs ?? '', rep.text.next ?? '',
-      rep.text.video ?? '', (rep.photos || []).length];
-  });
-
-  return [cols, ...rows].map(r => r.map(csvCell).join(',')).join('\r\n');
-}
-
-let downloader = null;
-try{
-  if(window.claude && typeof window.claude.use === 'function'){
-    window.claude.use('downloads').then(d => { downloader = d; }).catch(() => {});
-  }
-}catch(e){}
-
-document.getElementById('exportBtn').addEventListener('click', async () => {
-  const btn = document.getElementById('exportBtn');
-  const name = `watoto-worship-arts-${month}.csv`;
-  const csv = '\uFEFF' + buildCSV();
-  if(downloader){
-    btn.textContent = 'Saving…';
-    try{ await downloader.save({filename:name, data:csv}); btn.textContent = 'Export CSV'; }
-    catch(e){ btn.textContent = 'Export CSV'; }
-    return;
-  }
-  try{
-    await navigator.clipboard.writeText(csv);
-    btn.textContent = 'Copied to clipboard';
-    setTimeout(() => btn.textContent = 'Export CSV', 2200);
-  }catch(e){
-    btn.textContent = 'Export unavailable';
-    setTimeout(() => btn.textContent = 'Export CSV', 2200);
-  }
-});
-
 function render(){ renderStage(); renderRegions(); }
 render();
+cloudLoad();
 </script>
 </body>
 </html>

@@ -73,6 +73,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   padding-left:11px;border-left:1px solid rgba(255,255,255,.22);line-height:1.1;
 }
 .bar-right{display:flex;align-items:center;gap:8px}
+#adminBtn{text-decoration:none;display:inline-flex;align-items:center}
 .month{
   background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#F2F7F3;
   padding:7px 12px;border-radius:8px;font-size:13.5px;font-weight:500;cursor:pointer;
@@ -309,6 +310,7 @@ input[type=number]{-moz-appearance:textfield}
       </div>
       <div class="bar-right">
         <select class="month" id="month" aria-label="Reporting month"></select>
+        <a class="month" id="adminBtn" href="admin.html">Admin</a>
         <button class="ghost" id="themeBtn" aria-label="Switch between light and dark">◐</button>
       </div>
     </div>

@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Watoto Worship Arts · Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stage:#0B2A17; --stage-2:#123A21;
+  --green:#25802D; --green-lift:#2E9A38; --sky:#8ED1FC;
+  --paper:#EEF0EA; --card:#FFFFFF;
+  --ink:#16201A; --ink-soft:#5E6B61; --ink-faint:#8D978F;
+  --rule:#DDE1D8; --amber:#C47A14; --red:#B3261E; --violet:#6B4E9B;
+  --radius:12px;
+  --display:'Bricolage Grotesque','Instrument Sans',system-ui,sans-serif;
+  --text:'Instrument Sans',system-ui,-apple-system,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1510; --card:#141E18; --ink:#E7EDE8; --ink-soft:#9FAEA4; --ink-faint:#74857A;
+    --rule:#243029; --stage:#081A0F; --stage-2:#0E2817; --green-lift:#45B850;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1510; --card:#141E18; --ink:#E7EDE8; --ink-soft:#9FAEA4; --ink-faint:#74857A;
+  --rule:#243029; --stage:#081A0F; --stage-2:#0E2817; --green-lift:#45B850;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--text);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--green-lift);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ---------- stage ---------- */
+.stage{
+  background:
+    radial-gradient(120% 90% at 82% -10%, rgba(142,209,252,.18), transparent 62%),
+    linear-gradient(160deg, var(--stage) 0%, var(--stage-2) 100%);
+  color:#F2F6F1;padding:18px 0 26px;position:relative;overflow:hidden;
+}
+.stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+  background:linear-gradient(90deg,var(--green-lift),var(--sky),var(--amber),var(--violet));opacity:.75}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{display:flex;align-items:center;gap:11px;min-width:0}
+.mark .logo{width:40px;height:40px;border-radius:10px;object-fit:cover;
+  box-shadow:0 0 0 1px rgba(255,255,255,.28)}
+.mark .rule{width:1px;height:24px;background:rgba(255,255,255,.26)}
+.mark .nm{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:-.01em}
+.mark .nm small{display:block;font-family:var(--text);font-weight:500;font-size:11.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(242,246,241,.62)}
+.spacer{flex:1 1 40px}
+.chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#F2F6F1;
+  border-radius:999px;padding:7px 13px;font-size:13px;font-weight:500;cursor:pointer;
+  display:inline-flex;align-items:center;gap:7px}
+.chip:hover{background:rgba(255,255,255,.17)}
+select.chip{appearance:none;padding-right:30px;
+  background-image:linear-gradient(45deg,transparent 50%,#F2F6F1 50%),linear-gradient(135deg,#F2F6F1 50%,transparent 50%);
+  background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+select.chip option{color:#16201A;background:#fff}
+
+.head{margin-top:26px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:end}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,44px);
+  line-height:1.03;letter-spacing:-.025em;margin:0 0 7px}
+.sub{color:rgba(242,246,241,.72);font-size:14.5px;max-width:52ch;margin:0}
+
+/* progress ring */
+.ring{display:flex;align-items:center;gap:14px}
+.ring svg{display:block}
+.ring .rv{font-family:var(--display);font-weight:700;font-size:26px;line-height:1}
+.ring .rl{font-size:12px;color:rgba(242,246,241,.66);letter-spacing:.04em}
+
+/* ---------- body ---------- */
+main{padding:28px 0 60px}
+.sec{margin-bottom:30px}
+.sechead{display:flex;align-items:baseline;gap:12px;margin:0 0 13px;flex-wrap:wrap}
+.sechead h2{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.015em;margin:0}
+.sechead p{margin:0;color:var(--ink-soft);font-size:13.5px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
+.kpi{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:15px 16px}
+.kpi .k{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);font-weight:600}
+.kpi .v{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.1;margin-top:5px;letter-spacing:-.02em}
+.kpi .d{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+.kpi .d.up{color:var(--green)} .kpi .d.dn{color:var(--amber)}
+
+/* outstanding */
+.alert{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--amber);
+  border-radius:var(--radius);padding:14px 16px;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.alert h3{margin:0 0 3px;font-family:var(--display);font-size:15px;font-weight:600}
+.alert p{margin:0;color:var(--ink-soft);font-size:13.5px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.pill{font-size:12.5px;padding:4px 10px;border-radius:999px;border:1px solid var(--rule);
+  background:transparent;color:var(--ink-soft);cursor:pointer}
+.pill:hover{border-color:var(--amber);color:var(--ink)}
+
+/* region tiles */
+.regions{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.rtile{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+.rtile.on{grid-column:1/-1}
+.rt-head{width:100%;background:none;border:0;text-align:left;padding:13px 15px;cursor:pointer;
+  display:block;position:relative}
+.rt-head:hover{background:rgba(0,0,0,.025)}
+:root[data-theme="dark"] .rt-head:hover{background:rgba(255,255,255,.04)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .rt-head:hover{background:rgba(255,255,255,.04)}
+  :root:not([data-theme="light"]) .ch-btn:hover{background:rgba(255,255,255,.04)}
+}
+.rt-head::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rc)}
+.rt-top{display:flex;align-items:center;gap:9px}
+.rt-name{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.01em}
+.rt-count{margin-left:auto;font-size:12.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+.rt-sum{display:block;margin-top:7px;font-size:13px;color:var(--ink-soft)}
+.ticks{display:flex;gap:3px;margin-top:9px}
+.tick{height:5px;flex:1;border-radius:3px;background:var(--rule)}
+.tick.ok{background:var(--rc)}
+.tick.late{background:var(--amber);opacity:.55}
+.rt-body{display:none;border-top:1px solid var(--rule);padding:12px 12px 8px}
+.rtile.on .rt-body{display:block}
+
+/* campus rows */
+.chan{border:1px solid var(--rule);border-radius:10px;margin-bottom:8px;overflow:hidden;background:var(--paper)}
+.ch-btn{width:100%;background:none;border:0;padding:11px 13px;text-align:left;cursor:pointer;
+  display:flex;align-items:center;gap:11px}
+.ch-btn:hover{background:rgba(0,0,0,.03)}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dot.ok{background:var(--green-lift)} .dot.late{background:var(--amber)} .dot.none{background:var(--rule)}
+.ch-name{font-weight:600;font-size:14.5px}
+.ch-meta{margin-left:auto;display:flex;align-items:center;gap:14px;font-size:12.5px;color:var(--ink-soft);
+  font-variant-numeric:tabular-nums}
+.ch-meta b{font-family:var(--display);font-weight:600;color:var(--ink);font-size:14px}
+.ch-state{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:600}
+.ch-state.ok{color:var(--green)} .ch-state.late{color:var(--amber)} .ch-state.none{color:var(--ink-faint)}
+.ch-body{display:none;padding:4px 14px 16px;background:var(--card);border-top:1px solid var(--rule)}
+.chan.on .ch-body{display:block}
+
+/* report view */
+.rep{display:grid;grid-template-columns:minmax(210px,.85fr) 2.5fr;gap:18px;margin-top:14px}
+@media (max-width:860px){.rep{grid-template-columns:1fr}}
+/* people serving — groups side by side instead of one tall stack */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:0 20px}
+.scol .grp{padding:0 0 3px}
+.scol .rows{border-top:1px solid var(--rule)}
+.srvtot{margin-top:12px;border-top:2px solid var(--rule);padding-top:4px}
+.panel h4{font-family:var(--display);font-size:13px;font-weight:600;margin:0 0 9px;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint)}
+.rows{border-top:1px solid var(--rule)}
+.row{display:flex;justify-content:space-between;gap:12px;padding:6.5px 0;border-bottom:1px solid var(--rule);font-size:13.5px}
+.row span{color:var(--ink-soft)}
+.row b{font-variant-numeric:tabular-nums;font-weight:600}
+.row.tot b,.row.tot span{color:var(--ink);font-weight:700}
+.grp{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);
+  font-weight:600;padding:11px 0 3px}
+.scol{min-width:0}
+.scol .row{font-size:13px;gap:8px}
+.scol .row span{overflow-wrap:anywhere}
+/* in their words — a tidy grid of cards, one section each */
+.words{margin-top:22px}
+.words-head{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.words-head h4{font-family:var(--display);font-size:13px;font-weight:600;margin:0;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap}
+.words-head i{flex:1;height:1px;background:var(--rule);display:block}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));
+  gap:14px;align-items:start}
+.wcard{border:1px solid var(--rule);border-radius:var(--radius);padding:13px 14px 14px;
+  background:var(--card);border-left:3px solid var(--rc,var(--rule))}
+.wcard h5{font-family:var(--display);font-size:12px;font-weight:600;margin:0 0 7px;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+.wcard p{margin:0;font-size:13.5px;line-height:1.55;white-space:pre-line;color:var(--ink-soft)}
+.wcard.wide{grid-column:span 2}
+@media (max-width:620px){.wcard.wide{grid-column:span 1}}
+.needs{margin:0;padding-left:16px;font-size:13.5px;color:var(--ink-soft)}
+.needs li{margin-bottom:4px}
+.gap{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--amber);font-weight:600}
+.gallery{margin-top:22px}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px}
+.shot{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--rule);
+  aspect-ratio:4/3;background:var(--stage);display:block}
+.shot svg{width:100%;height:100%;display:block}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:16px 10px 8px;
+  font-size:11.5px;color:#fff;line-height:1.3;
+  background:linear-gradient(to top,rgba(5,20,11,.78),rgba(5,20,11,0))}
+.cloud{font-size:12px;opacity:.85;margin-right:6px;align-self:center}
+.cloud.ok{color:var(--green-lift)}
+.cloud.warn{color:var(--amber)}
+.shot-note{margin:9px 0 0;font-size:11.5px;color:var(--ink-faint)}
+.subline{color:var(--ink-faint);font-size:12.5px;margin:12px 0 0}
+
+footer{border-top:1px solid var(--rule);padding:20px 0 34px;color:var(--ink-faint);font-size:12.5px}
+@media (max-width:640px){
+  .head{grid-template-columns:1fr;align-items:start}
+  .regions{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mark .logo{width:34px;height:34px}
+  .ch-meta{gap:9px}
+}
+</style>
+</head>
+<body>
+
+<header class="stage">
+  <div class="wrap">
+    <div class="bar">
+      <div class="mark">
+        <img class="logo" src="data:image/jpeg;base64,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" alt="Watoto">
+        <span class="rule"></span>
+        <span class="nm">Worship Arts<small>Admin view</small></span>
+      </div>
+      <span class="spacer"></span>
+      <span id="cloud" class="cloud">Loading reports…</span>
+      <select class="chip" id="month" aria-label="Month"></select>
+      <button class="chip" id="csv">Export CSV</button>
+      <button class="chip" id="theme" aria-label="Switch light or dark">◐</button>
+    </div>
+
+    <div class="head">
+      <div>
+        <h1>The whole board, one screen.</h1>
+        <p class="sub">Every campus report as it comes in — who has reported, who hasn't,
+          and what the numbers are saying across the ministry.</p>
+      </div>
+      <div class="ring">
+        <svg width="76" height="76" viewBox="0 0 76 76" aria-hidden="true">
+          <circle cx="38" cy="38" r="31" fill="none" stroke="rgba(255,255,255,.17)" stroke-width="7"/>
+          <circle id="arc" cx="38" cy="38" r="31" fill="none" stroke="#8ED1FC" stroke-width="7"
+                  stroke-linecap="round" transform="rotate(-90 38 38)"/>
+        </svg>
+        <div>
+          <div class="rv" id="ringv">—</div>
+          <div class="rl">campuses reported</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="sec">
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section class="sec" id="alertsec">
+    <div class="alert">
+      <div style="flex:1 1 260px">
+        <h3 id="alerth">Still to report</h3>
+        <p id="alertp"></p>
+        <div class="pills" id="alertpills"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sechead">
+      <h2>All campuses</h2>
+      <p>Open a region, then open a campus to read its full report.</p>
+    </div>
+    <div class="regions" id="regions"></div>
+  </section>
+
+  <footer>Watoto Church · Worship &amp; Creative Arts. Admin view — sample data shown for design review.</footer>
+</main>
+
+<script>
+const REGIONS = [
+  {id:'central',  name:'Central',         color:'#25802D', campuses:['Bugolobi','Downtown','Kansanga']},
+  {id:'northern', name:'Northern',        color:'#2F6FA8', campuses:['Ntinda','Nakweru']},
+  {id:'eastern',  name:'Eastern',         color:'#8A6A1C', campuses:['Bweyogerere','Mukono']},
+  {id:'western',  name:'Western',         color:'#A2452A', campuses:['Kyengera','Nansana']},
+  {id:'southern', name:'Southern',        color:'#6B4E9B', campuses:['Lubowa','Entebbe']},
+  {id:'beyond',   name:'Beyond Kampala',  color:'#1F7A6E', campuses:['Jinja','Mbarara','Gulu','Juba']},
+  {id:'villages', name:'Watoto Villages', color:'#B06A2C', campuses:['Suubi','Bbira','Laminadera']}
+];
+const ALL = REGIONS.flatMap(r => r.campuses);
+const SERVICES = ['Sunday services','Evenings of prayer','Weddings','Funerals'];
+const ROLE_GROUPS = [
+  {g:'Adult church',      items:['Singers','Choir members','Choir attendance','Instrumentalists']},
+  {g:'Morph',             items:['Singers','Instrumentalists']},
+  {g:"Children's church", items:['Singers','Instrumentalists']},
+  {g:'Creatives',         items:['Dancers','Actors','Spoken word','Other creatives']}
+];
+const ATT = 'Adult church: Choir attendance';
+const MONTHS = (()=>{const o=[],n=new Date();
+  for(let i=0;i<6;i++){const d=new Date(n.getFullYear(),n.getMonth()-i,1);
+    o.push({k:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`,
+            label:d.toLocaleString('en',{month:'long',year:'numeric'})});}
+  return o;})();
+
+/* ---- sample data (design review only) ---- */
+function hash(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}
+  return (h>>>0);}
+function seed(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}
+  return ()=>{h^=h<<13;h^=h>>>17;h^=h<<5;return ((h>>>0)%1000)/1000;};}
+const HL = ['Two new instrumentalists joined and are already serving on rotation.',
+  'The choir led worship at the regional carols rehearsal and it lifted the whole team.',
+  'Attendance held steady through the month and the midweek prayer evening grew.',
+  'Three young singers finished the CMF foundation module.'];
+const CH = ['Transport for the evening practice is still the biggest hurdle for the team.',
+  'We are short on instrumentalists, so the same three carry every service.',
+  'The monitor desk failed twice this month and affected two services.',
+  'Rehearsal attendance dips at month end when school fees are due.'];
+const FO = ['Begin training two more keyboard players.',
+  'Rebuild the Sunday rotation so no one serves more than twice a month.',
+  'Recruit for the children\u2019s church band.',
+  'Finish the carols repertoire by mid-month.'];
+const AC = ['Four on the CMF foundation module, two of them finishing this term. Two new volunteers are being trained on the sound desk.',
+  'Three enrolled in CMF. One worship leader is now mentoring the Morph singers on Saturdays.',
+  'Two completed CMF this month. We have started walking with three young instrumentalists towards leading a set.'];
+const ST = ['Sarah joined as a backing vocalist in March, nervous and barely audible. This month she led her first set, and the congregation sang like they meant it.',
+  'Our youngest drummer came in through the children\u2019s church band. He now serves on the adult rotation once a month and is teaching two others.',
+  'A volunteer who came to carry cables has finished the CMF foundation module and is being trained on the sound desk.'];
+const CAPS = ['Sunday second service','Choir rehearsal, Thursday','Evening of prayer','Youth night set',
+  'Children\u2019s church band','Dancers in the second service','Sound check before first service',
+  'Baptism Sunday','Spoken word, closing','New volunteers\u2019 first Sunday'];
+
+/* Stand-in scenes drawn in the brand palette. Real campus uploads replace these
+   once the reports are stored in the back end. */
+function scene(i, seed){
+  const sky='#8ED1FC', warm='#C47A14', lift='#2E9A38', vi='#6B4E9B';
+  const bg=(a,b)=>`<defs><linearGradient id="g${seed}" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs>
+    <rect width="200" height="150" fill="url(#g${seed})"/>`;
+  const head=(x,y,r,o)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#061a0f" opacity="${o}"/>
+    <path d="M${x-r*1.5} ${y+r*3.4} q${r*1.5} -${r*2.6} ${r*3} 0 z" fill="#061a0f" opacity="${o}"/>`;
+  const beams=`<g opacity=".22" fill="${sky}">
+    <path d="M40 0 L10 150 L58 150 Z"/><path d="M100 0 L80 150 L128 150 Z"/>
+    <path d="M160 0 L150 150 L196 150 Z"/></g>`;
+  const S=[
+    /* choir rows */ ()=>bg('#123A21','#0B2A17')+beams+
+      [0,1,2].map(r=>[0,1,2,3,4].map(c=>head(22+c*39+r*9, 96+r*17, 8-r, .85-r*.16)).join('')).join(''),
+    /* hands raised */ ()=>bg('#17422A','#0B2A17')+beams+
+      [18,46,74,102,130,158].map((x,k)=>`<g opacity="${.9-k*.07}" fill="#061a0f">
+        <rect x="${x}" y="${58+(k%3)*9}" width="9" height="${54-(k%3)*8}" rx="4"/>
+        <circle cx="${x+4.5}" cy="${56+(k%3)*9}" r="7"/></g>`).join(''),
+    /* drum kit */ ()=>bg('#1C4A2C','#0B2A17')+
+      `<ellipse cx="100" cy="112" rx="42" ry="26" fill="#061a0f" opacity=".9"/>
+       <ellipse cx="62" cy="84" rx="20" ry="12" fill="#061a0f" opacity=".8"/>
+       <ellipse cx="136" cy="84" rx="20" ry="12" fill="#061a0f" opacity=".8"/>
+       <ellipse cx="38" cy="58" rx="26" ry="5" fill="${warm}" opacity=".85"/>
+       <ellipse cx="164" cy="52" rx="24" ry="5" fill="${warm}" opacity=".7"/>
+       <rect x="36" y="58" width="3" height="56" fill="#061a0f" opacity=".7"/>
+       <rect x="163" y="52" width="3" height="62" fill="#061a0f" opacity=".7"/>`,
+    /* guitar */ ()=>bg('#123A21','#06200F')+
+      `<g fill="#061a0f" opacity=".92"><circle cx="128" cy="98" r="40"/><circle cx="92" cy="74" r="30"/></g>
+       <circle cx="116" cy="90" r="13" fill="${warm}" opacity=".8"/>
+       <rect x="24" y="36" width="60" height="11" rx="3" transform="rotate(26 24 36)" fill="#061a0f" opacity=".9"/>
+       ${[0,1,2,3].map(k=>`<line x1="34" y1="${40+k*3}" x2="124" y2="${86+k*3}" stroke="${sky}" stroke-width=".8" opacity=".5"/>`).join('')}`,
+    /* congregation */ ()=>bg('#0F3620','#071F12')+beams+
+      [0,1,2,3].map(r=>[0,1,2,3,4,5,6].map(c=>head(10+c*29+(r%2)*13, 70+r*21, 9-r*.9, .9-r*.12)).join('')).join(''),
+    /* dancers */ ()=>bg('#1A3C4A','#0B2A17')+beams+
+      [40,100,160].map((x,k)=>`<g fill="#061a0f" opacity="${.9-k*.1}">
+        <circle cx="${x}" cy="${48+k*6}" r="9"/>
+        <path d="M${x-14} ${62+k*6} q14 -8 28 0 l-7 30 h-14 z"/>
+        <rect x="${x-20}" y="${64+k*6}" width="16" height="6" rx="3" transform="rotate(-32 ${x-20} ${64+k*6})"/>
+        <rect x="${x+6}" y="${60+k*6}" width="16" height="6" rx="3" transform="rotate(-48 ${x+6} ${60+k*6})"/>
+        <rect x="${x-10}" y="${92+k*6}" width="7" height="26" rx="3"/>
+        <rect x="${x+4}" y="${92+k*6}" width="7" height="26" rx="3" transform="rotate(14 ${x+4} ${92+k*6})"/></g>`).join('')
+  ];
+  return `<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">${S[i%S.length]()}</svg>`;
+}
+
+const NE = [['Two monitor speakers','Guitar strings','Transport support for evening practice'],
+  ['A working keyboard stand','Microphone cables'],['Drum heads','A second guitar amp','Music stands'],
+  ['Projector bulb','Instrument cases']];
+
+const SB_URL = 'https://vjjpwylxulcqksycdnnb.supabase.co';
+const SB_KEY = 'sb_publishable_tFfmkmgCnqAE8qes3EIgMg_GBlh-Bfy';
+const SB_H = {apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY};
+const REST = SB_URL + '/rest/v1/reports';
+
+/* real reports, loaded from the shared record */
+const DATA = {};
+MONTHS.forEach(m => { DATA[m.k] = {}; ALL.forEach(c => { DATA[m.k][c] = {state:'none'}; }); });
+
+function adminSay(msg, cls){
+  const el = document.getElementById('cloud');
+  if(el){ el.textContent = msg; el.className = 'cloud ' + (cls||''); }
+}
+
+async function loadReports(){
+  try{
+    const res = await fetch(REST + '?select=campus,month,status,services,roles,text,photos', {headers: SB_H});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    const rows = await res.json();
+    let n = 0;
+    rows.forEach(r => {
+      if(!DATA[r.month]) DATA[r.month] = {};
+      if(!ALL.includes(r.campus)) return;
+      const t = r.text || {};
+      DATA[r.month][r.campus] = {
+        state: r.status === 'submitted' ? 'ok' : 'late',
+        services: r.services || {},
+        roles: r.roles || {},
+        ac: t.cmf || '', st: t.story || '',
+        hl: t.well || '', ch: t.hard || '',
+        fo: t.next || '',
+        needs: (t.needs || '').split('\n').map(x=>x.trim()).filter(Boolean),
+        realPhotos: r.photos || [],
+        photos: (r.photos || []).length,
+        on: ''
+      };
+      n++;
+    });
+    adminSay(n ? ('Shared record · ' + n + ' report' + (n===1?'':'s')) : 'Shared record connected · no reports yet', 'ok');
+    render();
+  }catch(e){
+    adminSay('Could not reach the shared record', 'warn');
+  }
+}
+
+const COUNT_KEYS = ROLE_GROUPS.flatMap(x => x.items.map(i => x.g+': '+i)).filter(k => k !== ATT);
+const serving = d => d.roles ? COUNT_KEYS.reduce((s,k)=>s+(+d.roles[k]||0),0) : 0;
+const gaths   = d => d.services ? SERVICES.reduce((s,k)=>s+(+d.services[k]||0),0) : 0;
+
+/* ---- state ---- */
+let month = MONTHS[0].k;
+let openR = new Set(['central']);
+let openC = null;
+
+const $ = s => document.querySelector(s);
+const msel = $('#month');
+msel.innerHTML = MONTHS.map(m=>`<option value="${m.k}">${m.label}</option>`).join('');
+msel.addEventListener('change', ()=>{ month = msel.value; openC = null; render(); });
+$('#theme').addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme');
+  const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme:dark)').matches;
+  document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+});
+$('#csv').addEventListener('click', function(){
+  this.textContent = 'Sample only'; setTimeout(()=>this.textContent='Export CSV', 1400);
+});
+
+function render(){
+  const M = DATA[month];
+  const done = ALL.filter(c => M[c].state !== 'none');
+  const late = ALL.filter(c => M[c].state === 'late');
+  const missing = ALL.filter(c => M[c].state === 'none');
+  const people = done.reduce((s,c)=>s+serving(M[c]),0);
+  const events = done.reduce((s,c)=>s+gaths(M[c]),0);
+  const choirM = done.reduce((s,c)=>s+(+M[c].roles['Adult church: Choir members']||0),0);
+  const choirA = done.reduce((s,c)=>s+(+M[c].roles[ATT]||0),0);
+  const turnout = choirM ? Math.round(choirA/choirM*100) : 0;
+
+  const pct = done.length/ALL.length;
+  $('#ringv').textContent = `${done.length}/${ALL.length}`;
+  const arc = $('#arc'), C = 2*Math.PI*31;
+  arc.setAttribute('stroke-dasharray', C);
+  arc.setAttribute('stroke-dashoffset', C*(1-pct));
+
+  $('#kpis').innerHTML = [
+    ['Reports in', `${done.length}`, `${missing.length} still outstanding`, missing.length?'dn':'up'],
+    ['People serving', people.toLocaleString(), 'across every congregation', ''],
+    ['Gatherings held', events.toLocaleString(), 'services and events', ''],
+    ['Choir turnout', `${turnout}%`, `${choirA} of ${choirM} usually attend`, turnout<60?'dn':'up']
+  ].map(([k,v,d,c]) => `<div class="kpi"><div class="k">${k}</div><div class="v">${v}</div>
+      <div class="d ${c}">${d}</div></div>`).join('');
+
+  const waiting = missing.concat(late);
+  $('#alertsec').style.display = waiting.length ? '' : 'none';
+  $('#alerth').textContent = missing.length ? 'Still to report' : 'Came in late';
+  $('#alertp').textContent = missing.length
+    ? `${missing.length} campus${missing.length===1?'':'es'} haven't submitted for ${MONTHS.find(m=>m.k===month).label}.`
+    : 'Everything is in. These arrived after the deadline.';
+  $('#alertpills').innerHTML = waiting.map(c=>`<button class="pill" data-jump="${c}">${c}</button>`).join('');
+
+  $('#regions').innerHTML = REGIONS.map(r=>{
+    const on = openR.has(r.id);
+    const inn = r.campuses.filter(c=>M[c].state!=='none');
+    const ppl = inn.reduce((s,c)=>s+serving(M[c]),0);
+    const ticks = `<div class="ticks">${r.campuses.map(c=>{
+      const st=M[c].state; return `<span class="tick ${st==='none'?'':st}"></span>`;}).join('')}</div>`;
+    return `<section class="rtile ${on?'on':''}" style="--rc:${r.color}">
+      <button class="rt-head" data-r="${r.id}" aria-expanded="${on}">
+        <span class="rt-top"><span class="rt-name">${r.name}</span>
+          <span class="rt-count">${inn.length}/${r.campuses.length}</span></span>
+        <span class="rt-sum">${inn.length ? `${ppl} serving · ${inn.reduce((s,c)=>s+gaths(M[c]),0)} gatherings`
+          : 'nothing in yet'}</span>
+        ${ticks}
+      </button>
+      <div class="rt-body">${on ? r.campuses.map(c=>channel(c,M)).join('') : ''}</div>
+    </section>`;
+  }).join('');
+
+  document.querySelectorAll('.rt-head').forEach(b=>b.addEventListener('click',()=>{
+    const id=b.dataset.r;
+    if(openR.has(id)){ openR.delete(id);
+      const r=REGIONS.find(x=>x.id===id); if(r.campuses.includes(openC)) openC=null; }
+    else openR.add(id);
+    render();
+  }));
+  document.querySelectorAll('.ch-btn').forEach(b=>b.addEventListener('click',()=>{
+    openC = openC===b.dataset.c ? null : b.dataset.c; render();
+  }));
+  document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{
+    const c=b.dataset.jump, r=REGIONS.find(x=>x.campuses.includes(c));
+    openR.add(r.id); openC = DATA[month][c].state==='none' ? null : c; render();
+    setTimeout(()=>{const el=document.querySelector(`[data-c="${c}"]`);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'center'});},40);
+  }));
+}
+
+function channel(c, M){
+  const d = M[c], on = openC===c, st = d.state;
+  const label = st==='ok' ? 'in' : st==='late' ? 'late' : 'waiting';
+  const meta = st==='none'
+    ? `<span class="ch-state none">waiting</span>`
+    : `<span><b>${serving(d)}</b> serving</span><span><b>${gaths(d)}</b> gatherings</span>
+       <span class="ch-state ${st}">${label}</span>`;
+  return `<div class="chan ${on?'on':''}">
+    <button class="ch-btn" data-c="${c}" ${st==='none'?'disabled style="opacity:.6;cursor:default"':''}>
+      <span class="dot ${st==='none'?'none':st}"></span>
+      <span class="ch-name">${c}</span>
+      <span class="ch-meta">${meta}</span>
+    </button>
+    ${on ? `<div class="ch-body">${report(c,d)}</div>` : ''}
+  </div>`;
+}
+
+function report(c, d){
+  const cm = +d.roles['Adult church: Choir members']||0, ca = +d.roles[ATT]||0;
+  const gapFlag = cm && ca/cm < .6
+    ? `<div class="gap">▲ only ${Math.round(ca/cm*100)}% of the choir usually turns up</div>` : '';
+  const svc = SERVICES.map(s=>`<div class="row"><span>${s}</span><b>${d.services[s]}</b></div>`).join('');
+  const roles = ROLE_GROUPS.map(x=>`<div class="scol"><div class="grp">${x.g}</div>
+    <div class="rows">` + x.items.map(i=>{
+      const k=x.g+': '+i, v=d.roles[k];
+      return `<div class="row"><span>${i}${k===ATT?' <em style="opacity:.7">(not counted)</em>':''}</span><b>${v}</b></div>`;
+    }).join('') + `</div></div>`).join('');
+  return `
+  <p class="subline">${d.photos} photo${d.photos===1?'':'s'} attached</p>
+  <div class="rep">
+    <div class="panel">
+      <h4>Services and events</h4>
+      <div class="rows">${svc}
+        <div class="row tot"><span>Total gatherings</span><b>${gaths(d)}</b></div></div>
+    </div>
+    <div class="panel">
+      <h4>People actively serving</h4>
+      <div class="sgrid">${roles}</div>
+      <div class="rows srvtot">
+        <div class="row tot"><span>Total serving</span><b>${serving(d)}</b></div></div>
+      ${gapFlag}
+    </div>
+  </div>
+  <div class="words">
+    <div class="words-head"><h4>In their words</h4><i></i></div>
+    <div class="wgrid">
+      <div class="wcard wide"><h5>Training and leadership</h5><p>${d.ac}</p></div>
+      <div class="wcard wide"><h5>Impact story</h5><p>${d.st}</p></div>
+      <div class="wcard"><h5>Highlights</h5><p>${d.hl}</p></div>
+      <div class="wcard"><h5>Challenges</h5><p>${d.ch}</p></div>
+      <div class="wcard"><h5>Pressing needs</h5>
+        <ul class="needs">${d.needs.map(n=>`<li>${n}</li>`).join('')}</ul></div>
+      <div class="wcard"><h5>Focus areas next month</h5><p>${d.fo}</p></div>
+    </div>
+  </div>
+  ${d.photos ? `<div class="gallery">
+    <div class="words-head"><h4>Photos from this month</h4><i></i></div>
+    <div class="ggrid">${(d.realPhotos||[]).map((src,k)=>`
+      <figure class="shot"><img src="${src}" alt="Photo ${k+1} from ${c}" loading="lazy"></figure>`).join('')}</div>
+  </div>` : ''}`;
+}
+
+render();
+loadReports();
+</script>
+</body>
+</html>

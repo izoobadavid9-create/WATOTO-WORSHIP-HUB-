@@ -227,7 +227,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0 34px;color:var(--ink-fain
 
     <div class="head">
       <div>
-        <h1>The whole board, one screen.</h1>
+        <h1>All campus reports</h1>
         <p class="sub">Every campus report as it comes in — who has reported, who hasn't,
           and what the numbers are saying across the ministry.</p>
       </div>
@@ -407,7 +407,7 @@ async function loadReports(){
         hl: t.well || '', ch: t.hard || '',
         fo: t.next || '',
         needs: (t.needs || '').split('\n').map(x=>x.trim()).filter(Boolean),
-        realPhotos: r.photos || [],
+        realPhotos: (r.photos || []).map(p => (p && p.src) ? p.src : p),
         photos: (r.photos || []).length,
         on: ''
       };
@@ -438,8 +438,49 @@ $('#theme').addEventListener('click', ()=>{
   const dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme:dark)').matches;
   document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
 });
+function csvCell(v){
+  const t = (v == null ? '' : String(v));
+  return /[",\n]/.test(t) ? '"' + t.replace(/"/g,'""') + '"' : t;
+}
+function buildCSV(){
+  const M = DATA[month] || {};
+  const label = (MONTHS.find(m => m.k === month) || {}).label || month;
+  const cols = ['Month','Region','Campus','Status',
+    ...SERVICES, 'Total gatherings',
+    ...COUNT_KEYS, 'Total serving',
+    'Choir attendance (not counted)',
+    'Training and leadership','Impact story','Highlights','Challenges',
+    'Pressing needs','Focus next month','Photos'];
+  const rows = ALL.map(c => {
+    const region = REGIONS.find(r => r.campuses.includes(c)) || {name:''};
+    const d = M[c] || {state:'none'};
+    if(d.state === 'none')
+      return [label, region.name, c, 'Not submitted', ...SERVICES.map(()=>''), '',
+        ...COUNT_KEYS.map(()=>''), '', '', '', '', '', '', '', '', ''];
+    return [label, region.name, c, d.state === 'late' ? 'Draft' : 'Reported',
+      ...SERVICES.map(sv => d.services[sv] ?? ''), gaths(d),
+      ...COUNT_KEYS.map(k => d.roles[k] ?? ''), serving(d),
+      d.roles[ATT] ?? '',
+      d.ac || '', d.st || '', d.hl || '', d.ch || '',
+      (d.needs || []).join(' / '), d.fo || '', d.photos || 0];
+  });
+  return [cols, ...rows].map(r => r.map(csvCell).join(',')).join('\r\n');
+}
 $('#csv').addEventListener('click', function(){
-  this.textContent = 'Sample only'; setTimeout(()=>this.textContent='Export CSV', 1400);
+  const btn = this;
+  try{
+    const csv = '\uFEFF' + buildCSV();
+    const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'watoto-worship-arts-' + month + '.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    btn.textContent = 'Downloaded'; setTimeout(() => btn.textContent = 'Export CSV', 1400);
+  }catch(e){
+    btn.textContent = 'Could not export'; setTimeout(() => btn.textContent = 'Export CSV', 1800);
+  }
 });
 
 function render(){
